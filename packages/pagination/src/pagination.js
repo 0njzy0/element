@@ -237,7 +237,7 @@ export default {
         handleChange(value) {
           this.$parent.internalCurrentPage = this.$parent.getValidCurrentPage(value);
           this.$parent.emitChange();
-          this.oldValue = null;
+          this.oldValue = value;
           this.resetValueIfNeed(value);
         },
         resetValueIfNeed(value) {
@@ -248,6 +248,9 @@ export default {
             } else {
               this.reassignMaxValue(value);
             }
+          } else {
+            this.oldValue = 1;
+            this.$refs.input.$el.querySelector('input').value = 1;
           }
         },
         reassignMaxValue(value) {
